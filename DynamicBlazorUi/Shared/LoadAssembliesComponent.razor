@@ -1,0 +1,15 @@
+@using DynamicBlazorUi.Services
+@inject IUiAssemblyService UiAssemblyService
+@inject NavigationManager NavigationManager
+
+@code {
+  protected override async Task OnInitializedAsync()
+  {
+    await base.OnInitializedAsync();
+    if (await UiAssemblyService.GetAssemblies())
+    {
+      NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+    }
+  }
+
+}

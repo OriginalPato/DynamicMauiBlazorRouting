@@ -1,0 +1,14 @@
+﻿@using DynamicBlazorUi.Services
+@inject IUiAssemblyService IUiAssemblyService
+<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="@IUiAssemblyService.Assemblies">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <LoadAssembliesComponent></LoadAssembliesComponent>
+        </LayoutView>
+    </NotFound>
+</Router>
+
