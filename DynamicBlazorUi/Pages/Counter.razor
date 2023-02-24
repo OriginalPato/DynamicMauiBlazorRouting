@@ -37,7 +37,7 @@ This progress bar is coming from wwwroot/js/Counter.js and is imported in the in
     private async void IncrementCount()
     {
         currentCount++;
-        //await ExampleModule.Value.InvokeVoidAsync("RenderProgressBar", currentCount);
-        await Jsr.InvokeVoidAsync("RenderProgressBar", currentCount);
+        await ExampleModule.Value.InvokeVoidAsync("RenderProgressBar2", currentCount);
+        //await Jsr.InvokeVoidAsync("exampleFunction", currentCount);
     }
 }

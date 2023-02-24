@@ -2,7 +2,7 @@
     alert("Hello Blazor School")
 }
 
-window.RenderProgressBar = (count) => {
+export function RenderProgressBar2(count) {
     const Progress = () => React.createElement(
         Fabric.ProgressIndicator,
         {
