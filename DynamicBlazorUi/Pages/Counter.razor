@@ -1,5 +1,6 @@
 ﻿@page "/counter"
 @inject IJSRuntime Jsr
+@implements IAsyncDisposable
 
 <h1>Counter</h1>
 
@@ -10,13 +11,33 @@
 Click the button and you'll see a progress bar build with react
 <div id="reactProgressBar"></div>
 This progress bar is coming from wwwroot/js/Counter.js and is imported in the index.html file
+
 @code {
     private int currentCount = 0;
+    private Lazy<IJSObjectReference> ExampleModule = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            Console.WriteLine("POTATO");
+            ExampleModule = new(await Jsr.InvokeAsync<IJSObjectReference>("import", "./pages/Counter.razor.js"));
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (ExampleModule.IsValueCreated)
+        {
+            await ExampleModule.Value.DisposeAsync();
+        }
+    }
 
     private async void IncrementCount()
     {
         currentCount++;
+        //await ExampleModule.Value.InvokeVoidAsync("RenderProgressBar", currentCount);
         await Jsr.InvokeVoidAsync("RenderProgressBar", currentCount);
     }
 }
-

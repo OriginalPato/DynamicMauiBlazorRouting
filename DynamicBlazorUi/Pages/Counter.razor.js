@@ -1,4 +1,8 @@
-﻿window.RenderProgressBar = (count) => {
+﻿export function exampleFunction() {
+    alert("Hello Blazor School")
+}
+
+window.RenderProgressBar = (count) => {
     const Progress = () => React.createElement(
         Fabric.ProgressIndicator,
         {
