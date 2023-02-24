@@ -7,7 +7,7 @@ export function RenderProgressBar2(count) {
         Fabric.ProgressIndicator,
         {
             'label': 'React Counter',
-            'description': count,
+            'description': `${count}`,
             'percentComplete': (count % 10) * 0.1
         },
         null

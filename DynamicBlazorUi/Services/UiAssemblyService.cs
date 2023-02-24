@@ -23,7 +23,7 @@ public class UiAssemblyService : IUiAssemblyService
         using var client = new HttpClient();
         //Obviously this would hit and api and give a link to where we would then download the dll from a CDN (Virtually no cost)
         var res = await client.GetByteArrayAsync(
-            "https://blazorhostedassembly.blob.core.windows.net/testing/RazorClassLibrary1.dll");
+            "https://blazorhostedassembly.blob.core.windows.net/testing/RazorClassLibraryTesting.dll");
         try
         {
             var a = Assembly.Load(res);

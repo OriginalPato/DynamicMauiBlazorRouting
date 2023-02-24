@@ -62,4 +62,7 @@
     <ItemGroup>
       <Folder Include="Services\" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\DynamicBlazor.Services\DynamicBlazor.Services.csproj" />
+    </ItemGroup>
 </Project>

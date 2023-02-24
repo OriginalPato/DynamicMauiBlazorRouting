@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DynamicBlazor.Services;
+using Microsoft.Extensions.Logging;
 using DynamicBlazorUi.Data;
 using DynamicBlazorUi.Services;
 
@@ -22,6 +23,7 @@ public static class MauiProgram
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
+		builder.Services.AddSingleton<TestService>();
 		builder.Services.AddSingleton<IUiAssemblyService, UiAssemblyService>();
 		builder.Services.AddSingleton<WeatherForecastService>();
 

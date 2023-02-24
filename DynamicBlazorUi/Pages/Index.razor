@@ -1,5 +1,6 @@
 ﻿@page "/"
-
+@using DynamicBlazor.Services
+@inject TestService TestService
 <h1>Hello, world!</h1>
 
 Counter Page is an example of loading a progress bar with React
@@ -7,4 +8,17 @@ Counter Page is an example of loading a progress bar with React
 <br />
 
 Load From Azure is a page which is loaded from a remote DLL that is hosted in Azure and added to the list of assemblies Blazor can call upon at runtime.
+<br />
+<br />
+Test Service Value: @TestService.GetCounter()
 
+<button @onclick="increment">INCREMENT COUNTER</button>
+
+@code
+{
+    void increment()
+    {
+        TestService.IncrementCounter();
+        StateHasChanged();
+    }
+}
