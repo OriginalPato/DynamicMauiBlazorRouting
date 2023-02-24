@@ -34,6 +34,7 @@ public class UiAssemblyService : IUiAssemblyService
             Console.WriteLine(e);
             return false;
         }
+        await Task.Delay(3000);
         return true;
     }
 }
