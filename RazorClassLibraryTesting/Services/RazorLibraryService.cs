@@ -12,7 +12,7 @@ namespace RazorClassLibraryTesting.Services
         private int _iter;
         public RazorLibraryService()
         {
-            _iter = 0;
+            _iter = 10000;
         }
 
         public int GetNext()

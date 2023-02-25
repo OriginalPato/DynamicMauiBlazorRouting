@@ -11,8 +11,8 @@ namespace RazorClassLibraryTesting
 {
     public partial class Counter3 : ComponentBase
     {
-        RazorLibraryService razorLibraryService;
         [Inject] IRemoteDependencyResolver remoteDependencyResolver { get; set; }
+        RazorLibraryService razorLibraryService;
 
         protected override async Task OnInitializedAsync()
         {

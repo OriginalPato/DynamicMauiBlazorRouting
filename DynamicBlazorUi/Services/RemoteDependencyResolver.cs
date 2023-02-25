@@ -11,8 +11,7 @@ namespace DynamicBlazorUi.Services
     {
         public T Resolve<T>(T type) where T : class
         {
-            var y = typeof(T);
-            T res = null;
+            T res;
             res = DependencyService.Resolve<T>();
             if (res != null) { return res; }
             DependencyService.RegisterSingleton<T>(type);

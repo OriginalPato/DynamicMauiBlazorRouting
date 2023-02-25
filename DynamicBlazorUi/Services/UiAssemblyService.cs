@@ -32,24 +32,6 @@ public class UiAssemblyService : IUiAssemblyService
         {
             return false;
         }
-        DependencyService.Register(new[] { assembly });
-        Type t = assembly.GetType("RazorClassLibraryTesting.RazorClassLibraryRegister");
-        var methodInfo = t.GetMethod("Register", new Type[] {});
-        if (methodInfo == null)
-        {
-            // never throw generic Exception - replace this with some other exception type
-            throw new Exception("No such method exists.");
-        }
-        object[] constructorParameters = new object[1];
-#if WINDOWS
-        constructorParameters[0] = MauiWinUIApplication.Current.Services.GetRequiredService(typeof(IRemoteDependencyInjector)); // First parameter.
-
-#endif
-        var o = Activator.CreateInstance(t, constructorParameters);
-
-        var r = methodInfo.Invoke(o, new object[] { });
-
-        Console.WriteLine(r);
 
         Assemblies = Assemblies.Append(assembly);
         return true;
