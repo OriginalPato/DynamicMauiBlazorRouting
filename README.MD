@@ -2,6 +2,13 @@
 
 ## Quick POC loading Pages/Components from some hosted place. In this case Azure blob storage but would quite easily be an authenticated endpoint or an authenticated CDN (best choice for price).
 
+
+## Overview
+
+1) When you launch the application, it will register certain services that are commonly used throughout the application. For example, BLE, logging service, or authentication service that will be used across multiple pages or features of the application.
+2) When you request a page that doesn't exist, the application will attempt to download the necessary `feature` from Azure. If the download is successful, the application will continue with the request and display the page. However, if the download fails, the application will display a 404 error page, indicating that the requested `feature` could not be found.
+3) The application will register certain services that are specific to a particular `feature` of the application. These services will be lazy registered, and subsequent requests for the same service will retrieve it from the DI container rather than registering it again. This approach allows the code to be split into smaller, more independent features, making it easier to maintain and update over time.
+
 ## Demo 
 1) Click the `LOAD FROM AZURE` button on the left nav menu.
 2) The first time you load this page you will see a loading icon. I have added an artificial delay to this to prove that it's doing something. 
