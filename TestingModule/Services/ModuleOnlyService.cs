@@ -1,21 +1,20 @@
-﻿namespace TestingModule.Services
+﻿namespace TestingModule.Services;
+
+public class ModuleOnlyService
 {
-    public class ModuleOnlyService
+    private int _iter;
+    public ModuleOnlyService()
     {
-        private int _iter;
-        public ModuleOnlyService()
-        {
-            _iter = 10000;
-        }
+        _iter = 10000;
+    }
 
-        public int GetNext()
-        {
-            return _iter;
-        }
+    public int GetNext()
+    {
+        return _iter;
+    }
 
-        public void Increment()
-        {
-            _iter++;
-        }
+    public void Increment()
+    {
+        _iter++;
     }
 }

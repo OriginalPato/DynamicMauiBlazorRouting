@@ -1,10 +1,11 @@
 @page "/counter3"
-@using DynamicBlazor.Services
-<h3>Counter3</h3>
-New<br />
+@using System.Reflection
+<h3>Counter3 from @Assembly.GetExecutingAssembly().GetName().Name</h3>
+<br />
+<br />
 @SharedCounterService.GetCounter()
-<button @onclick="inc">increment</button>
+<button @onclick="Inc">Increment Shared Counter</button>
 <br />
 <br />
 @_moduleOnlyService.GetNext()
-<button @onclick="inc2">increment</button>
+<button @onclick="Inc2">Increment Module Counter</button>
