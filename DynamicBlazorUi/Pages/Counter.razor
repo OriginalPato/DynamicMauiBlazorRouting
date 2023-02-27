@@ -4,7 +4,7 @@
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p role="status">Current count: @_currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
@@ -13,8 +13,8 @@ Click the button and you'll see a progress bar build with react
 This progress bar is coming from wwwroot/js/Counter.js and is imported in the index.html file
 
 @code {
-    private int currentCount = 0;
-    private Lazy<IJSObjectReference> ExampleModule = new();
+    private int _currentCount;
+    private Lazy<IJSObjectReference> _exampleModule = new();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -22,22 +22,22 @@ This progress bar is coming from wwwroot/js/Counter.js and is imported in the in
         if (firstRender)
         {
             Console.WriteLine("POTATO");
-            ExampleModule = new(await Jsr.InvokeAsync<IJSObjectReference>("import", "./pages/Counter.razor.js"));
+            _exampleModule = new Lazy<IJSObjectReference>(await Jsr.InvokeAsync<IJSObjectReference>("import", "./pages/Counter.razor.js"));
         }
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (ExampleModule.IsValueCreated)
+        if (_exampleModule.IsValueCreated)
         {
-            await ExampleModule.Value.DisposeAsync();
+            await _exampleModule.Value.DisposeAsync();
         }
     }
 
     private async void IncrementCount()
     {
-        currentCount++;
-        await ExampleModule.Value.InvokeVoidAsync("RenderProgressBar2", currentCount);
+        _currentCount++;
+        await _exampleModule.Value.InvokeVoidAsync("RenderProgressBar2", _currentCount);
         //await Jsr.InvokeVoidAsync("exampleFunction", currentCount);
     }
 }

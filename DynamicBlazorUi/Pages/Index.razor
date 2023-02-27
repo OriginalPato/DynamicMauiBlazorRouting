@@ -12,11 +12,11 @@ Load From Azure is a page which is loaded from a remote DLL that is hosted in Az
 <br />
 Test Service Value: @SharedCounterService.GetCounter()
 
-<button @onclick="increment">INCREMENT COUNTER</button>
+<button @onclick="Increment">INCREMENT COUNTER</button>
 
 @code
 {
-    void increment()
+    void Increment()
     {
         SharedCounterService.IncrementCounter();
         StateHasChanged();

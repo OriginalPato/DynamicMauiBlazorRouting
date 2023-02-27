@@ -1,7 +1,6 @@
-﻿namespace DynamicBlazor.Services
+﻿namespace DynamicBlazor.Services;
+
+public interface IRemoteDependencyResolver
 {
-    public interface IRemoteDependencyResolver
-    {
-        T Resolve<T>() where T : class, new();
-    }
+    T Resolve<T>() where T : class, new();
 }

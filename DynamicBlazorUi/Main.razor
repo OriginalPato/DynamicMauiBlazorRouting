@@ -1,6 +1,6 @@
 ﻿@using DynamicBlazorUi.Services
-@inject IUiAssemblyService IUiAssemblyService
-<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="@IUiAssemblyService.Assemblies">
+@inject IUiAssemblyService UiAssemblyService
+<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="@UiAssemblyService.Assemblies">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />

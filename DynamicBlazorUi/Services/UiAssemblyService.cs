@@ -1,7 +1,4 @@
-﻿using DynamicBlazor.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System.Net;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace DynamicBlazorUi.Services;
 
@@ -31,7 +28,7 @@ public class UiAssemblyService : IUiAssemblyService
             var assembly = Assembly.Load(res);
             Assemblies = Assemblies.Append(assembly);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // Throw if we can't load the assembly and return false 
             return false;
