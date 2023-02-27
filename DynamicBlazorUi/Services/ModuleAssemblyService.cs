@@ -3,17 +3,17 @@ using DynamicBlazor.Api.Controllers;
 
 namespace DynamicBlazorUi.Services;
 
-public interface IUiAssemblyService
+public interface IModuleAssemblyService
 {
     IEnumerable<Assembly> Assemblies { get; }
     Task<bool> GetAssemblies(List<Feature> features);
 }
 
-public class UiAssemblyService : IUiAssemblyService
+public class ModuleAssemblyService : IModuleAssemblyService
 {
     public IEnumerable<Assembly> Assemblies { get; private set; }
 
-    public UiAssemblyService()
+    public ModuleAssemblyService()
     {
         Assemblies = new List<Assembly>();
     }

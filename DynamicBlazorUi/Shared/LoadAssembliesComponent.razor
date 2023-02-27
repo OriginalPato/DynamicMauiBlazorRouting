@@ -1,7 +1,7 @@
 @using DynamicBlazorUi.Services
 @using System.Text.Json
 @using DynamicBlazor.Api.Controllers
-@inject IUiAssemblyService UiAssemblyService
+@inject IModuleAssemblyService ModuleAssemblyService
 @inject NavigationManager NavigationManager
 
 <div class="spinner-grow" role="status">
@@ -15,7 +15,7 @@
     var res = await client.GetAsync("https://localhost:7192/Features");
     var content = await res.Content.ReadAsStringAsync();
     var features = JsonSerializer.Deserialize<List<Feature>>(content);
-    if (await UiAssemblyService.GetAssemblies(features))
+    if (await ModuleAssemblyService.GetAssemblies(features))
     {
       NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
     }

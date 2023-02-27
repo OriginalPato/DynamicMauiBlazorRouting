@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicBlazor.Services", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingModule", "TestingModule\TestingModule.csproj", "{002663E6-08D7-4948-9498-488D03897F7B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{84F5129A-0EEC-47E5-83CE-95360DDFBAA5}"
-	ProjectSection(SolutionItems) = preProject
-		README.MD = README.MD
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{8151D83F-0CDA-4557-BF78-74BBBECA241A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile App", "Mobile App", "{B5B12AB8-E507-410C-B9D4-48B52726710C}"

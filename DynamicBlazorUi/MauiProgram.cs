@@ -24,7 +24,7 @@ public static class MauiProgram
 #endif
 		builder.Services.AddSingleton<IRemoteDependencyResolver, RemoteDependencyResolver>();
 		builder.Services.AddSingleton<SharedCounterService>();
-		builder.Services.AddSingleton<IUiAssemblyService, UiAssemblyService>();
+		builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
 
 		return builder.Build();
 	}
