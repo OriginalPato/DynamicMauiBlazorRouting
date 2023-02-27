@@ -1,8 +1,6 @@
 ﻿using DynamicBlazor.Services;
 using Microsoft.Extensions.Logging;
-using DynamicBlazorUi.Data;
 using DynamicBlazorUi.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace DynamicBlazorUi;
 
@@ -27,7 +25,6 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IRemoteDependencyResolver, RemoteDependencyResolver>();
 		builder.Services.AddSingleton<SharedCounterService>();
 		builder.Services.AddSingleton<IUiAssemblyService, UiAssemblyService>();
-		builder.Services.AddSingleton<WeatherForecastService>();
 
 		return builder.Build();
 	}
