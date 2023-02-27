@@ -1,6 +1,4 @@
-﻿using DynamicBlazor.Services;
-
-namespace DynamicBlazorUi.Services;
+﻿namespace DynamicBlazorUi.Services;
 
 public class RemoteDependencyResolver : IRemoteDependencyResolver
 {

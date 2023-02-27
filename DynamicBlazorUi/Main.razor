@@ -1,5 +1,4 @@
-﻿@using DynamicBlazorUi.Services
-@inject IModuleAssemblyService ModuleAssemblyService
+﻿@inject IModuleAssemblyService ModuleAssemblyService
 <Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="@ModuleAssemblyService.Assemblies">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
