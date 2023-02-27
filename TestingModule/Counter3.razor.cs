@@ -13,7 +13,7 @@ namespace TestingModule
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            _moduleOnlyService = remoteDependencyResolver.Resolve<ModuleOnlyService>(new ModuleOnlyService());
+            _moduleOnlyService = remoteDependencyResolver.Resolve<ModuleOnlyService>();
         }
 
         void inc()

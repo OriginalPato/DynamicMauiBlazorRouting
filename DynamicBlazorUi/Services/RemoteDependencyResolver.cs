@@ -9,12 +9,12 @@ namespace DynamicBlazorUi.Services
 {
     public class RemoteDependencyResolver : IRemoteDependencyResolver
     {
-        public T Resolve<T>(T type) where T : class
+        public T Resolve<T>() where T : class, new()
         {
             T res;
             res = DependencyService.Resolve<T>();
             if (res != null) { return res; }
-            DependencyService.RegisterSingleton<T>(type);
+            DependencyService.RegisterSingleton(new T());
             res = DependencyService.Resolve<T>();
             return res;
         }

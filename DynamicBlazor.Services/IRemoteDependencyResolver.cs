@@ -2,6 +2,6 @@
 {
     public interface IRemoteDependencyResolver
     {
-        T Resolve<T>(T type) where T : class;
+        T Resolve<T>() where T : class, new();
     }
 }
