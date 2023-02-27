@@ -60,6 +60,7 @@
       <None Remove="Services\" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\DynamicBlazor.Models\DynamicBlazor.Models.csproj" />
       <ProjectReference Include="..\DynamicBlazor.Services\DynamicBlazor.Services.csproj" />
     </ItemGroup>
 </Project>
