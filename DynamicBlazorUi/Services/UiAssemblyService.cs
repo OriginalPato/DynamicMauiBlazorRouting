@@ -26,14 +26,16 @@ public class UiAssemblyService : IUiAssemblyService
         //Obviously this would hit and api and give a link to where we would then download the dll from a CDN (Virtually no cost)
         var res = await client.GetByteArrayAsync(
             "https://blazorhostedassembly.blob.core.windows.net/testing/TestingModule.dll");
-        Assembly assembly = null;
-        assembly = Assembly.Load(res);
-        if (assembly == null)
+        try
         {
+            var assembly = Assembly.Load(res);
+            Assemblies = Assemblies.Append(assembly);
+        }
+        catch (Exception e)
+        {
+            // Throw if we can't load the assembly and return false 
             return false;
         }
-
-        Assemblies = Assemblies.Append(assembly);
         return true;
     }
 }
