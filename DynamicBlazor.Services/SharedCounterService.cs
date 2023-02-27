@@ -1,10 +1,10 @@
 namespace DynamicBlazor.Services;
 
-public class TestService
+public class SharedCounterService
 {
     private int _counter;
 
-    public TestService()
+    public SharedCounterService()
     {
         _counter = 0;
     }

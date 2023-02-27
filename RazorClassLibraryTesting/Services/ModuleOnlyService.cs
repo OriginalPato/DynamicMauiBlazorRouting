@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace RazorClassLibraryTesting.Services
 {
-    public class RazorLibraryService : IBaseSharedService
+    public class ModuleOnlyService
     {
         private int _iter;
-        public RazorLibraryService()
+        public ModuleOnlyService()
         {
             _iter = 10000;
         }

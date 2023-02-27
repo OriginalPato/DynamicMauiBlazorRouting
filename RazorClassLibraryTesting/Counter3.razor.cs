@@ -12,21 +12,22 @@ namespace RazorClassLibraryTesting
     public partial class Counter3 : ComponentBase
     {
         [Inject] IRemoteDependencyResolver remoteDependencyResolver { get; set; }
-        RazorLibraryService razorLibraryService;
+        [Inject] private SharedCounterService SharedCounterService { get; set; }
+        ModuleOnlyService _moduleOnlyService;
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            razorLibraryService = remoteDependencyResolver.Resolve<RazorLibraryService>(new RazorLibraryService());
+            _moduleOnlyService = remoteDependencyResolver.Resolve<ModuleOnlyService>(new ModuleOnlyService());
         }
 
         void inc()
         {
-            TestService.IncrementCounter();
+            SharedCounterService.IncrementCounter();
         }
         void inc2()
         {
-            razorLibraryService.Increment();
+            _moduleOnlyService.Increment();
         }
     }
 }

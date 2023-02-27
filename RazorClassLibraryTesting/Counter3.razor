@@ -1,12 +1,10 @@
 @page "/counter3"
 @using DynamicBlazor.Services
-@using RazorClassLibraryTesting.Services;
-@inject TestService TestService
 <h3>Counter3</h3>
 New<br />
-@TestService.GetCounter()
+@SharedCounterService.GetCounter()
 <button @onclick="inc">increment</button>
 <br />
 <br />
-@razorLibraryService.GetNext()
+@_moduleOnlyService.GetNext()
 <button @onclick="inc2">increment</button>
