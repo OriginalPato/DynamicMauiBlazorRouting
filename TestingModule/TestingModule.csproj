@@ -4,6 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>TestingModule</AssemblyName>
+        <RootNamespace>TestingModule</RootNamespace>
     </PropertyGroup>
 
 

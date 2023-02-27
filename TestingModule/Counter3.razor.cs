@@ -1,13 +1,8 @@
 ﻿using DynamicBlazor.Services;
 using Microsoft.AspNetCore.Components;
-using RazorClassLibraryTesting.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TestingModule.Services;
 
-namespace RazorClassLibraryTesting
+namespace TestingModule
 {
     public partial class Counter3 : ComponentBase
     {

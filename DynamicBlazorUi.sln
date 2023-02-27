@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicBlazorUi", "DynamicB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicBlazor.Services", "DynamicBlazor.Services\DynamicBlazor.Services.csproj", "{D2C9D9F1-FD02-41A0-8445-1AF094CAD5E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorClassLibraryTesting", "RazorClassLibraryTesting\RazorClassLibraryTesting.csproj", "{002663E6-08D7-4948-9498-488D03897F7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingModule", "TestingModule\TestingModule.csproj", "{002663E6-08D7-4948-9498-488D03897F7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{84F5129A-0EEC-47E5-83CE-95360DDFBAA5}"
 	ProjectSection(SolutionItems) = preProject
