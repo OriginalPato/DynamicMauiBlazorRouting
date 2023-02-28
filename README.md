@@ -1,5 +1,5 @@
 # DynamicMauiBlazorRouting
-Load DLL from Blob storage and load page from that assembly
+Load App Module from Blob storage and load pages/services from that assembly
 
 ## How to Run?
 
