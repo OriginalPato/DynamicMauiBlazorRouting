@@ -8,7 +8,6 @@ public partial class LoadAssembliesComponent : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        await base.OnInitializedAsync();
         using var client = new HttpClient();
         // var res = await client.GetAsync("https://localhost:7192/Features");
         // var content = await res.Content.ReadAsStringAsync();

@@ -1,13 +1,24 @@
-﻿namespace DynamicBlazorUi.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DynamicBlazorUi.Services;
 
 public class RemoteDependencyResolver : IRemoteDependencyResolver
 {
     public T Resolve<T>() where T : class, new()
     {
-        var res = DependencyService.Resolve<T>();
-        if (res != null) { return res; }
+        var service = DependencyService.Resolve<T>();
+        if (service != null) { return service; }
         DependencyService.RegisterSingleton(new T());
-        res = DependencyService.Resolve<T>();
-        return res;
+        service = DependencyService.Resolve<T>();
+        return service;
+    }
+
+    public TService Resolve<TService, TImplementation>() where TService : class where TImplementation : class, TService
+    {
+        var service = DependencyService.Resolve<TService>();
+        if (service != null) { return service; }
+        DependencyService.Register<TService, TImplementation>();
+        service = DependencyService.Resolve<TService>();
+        return service;
     }
 }
