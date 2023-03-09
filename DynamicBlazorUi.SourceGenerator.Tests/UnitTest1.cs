@@ -39,7 +39,7 @@ public partial class ProductCategory
 
     private static class TestHelper
     {
-        public static Task Verify(string source)
+        public static void Verify(string source)
         {
             // Parse the provided string into a C# syntax tree
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(source);
@@ -64,8 +64,6 @@ public partial class ProductCategory
 
             var text = generatorResult.GeneratedSources.First().SourceText.ToString();
             text.Should().NotBeEmpty().And.NotBeNull();
-            // Use verify to snapshot test the source generator output!
-            return Task.CompletedTask;
         }
     }
 }
