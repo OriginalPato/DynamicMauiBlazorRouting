@@ -57,10 +57,9 @@ public partial class ProductCategory
             GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
 
             // Run the source generator!
-            driver = driver.RunGenerators(compilation);
-            var driver2 =
+            driver =
                 driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var diagnostics);
-            GeneratorDriverRunResult runResult = driver2.GetRunResult();
+            GeneratorDriverRunResult runResult = driver.GetRunResult();
             GeneratorRunResult generatorResult = runResult.Results[0];
 
             var text = generatorResult.GeneratedSources.First().SourceText.ToString();
