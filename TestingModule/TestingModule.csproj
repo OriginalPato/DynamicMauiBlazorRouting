@@ -19,6 +19,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DynamicBlazor.Services\DynamicBlazor.Services.csproj" />
+      <ProjectReference Include="..\DynamicBlazorUi.SourceGenerator.Common\DynamicBlazorUi.SourceGenerator.Common.csproj" />
+      <ProjectReference Include="..\DynamicBlazorUi.SourceGenerator\DynamicBlazorUi.SourceGenerator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
     </ItemGroup>
 
 </Project>

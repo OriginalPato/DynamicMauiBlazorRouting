@@ -1,4 +1,5 @@
 ﻿using DynamicBlazor.Services;
+using DynamicBlazorUi.SourceGenerator.Common;
 using Microsoft.AspNetCore.Components;
 using TestingModule.Services;
 
@@ -7,17 +8,12 @@ namespace TestingModule;
 // ReSharper disable once ClassNeverInstantiated.Global
 public partial class Counter3 : ComponentBase
 {
-    [Inject] private IRemoteDependencyResolver RemoteDependencyResolver { get; set; }
+    // [Inject] private IRemoteDependencyResolver RemoteDependencyResolver { get; set; }
     [Inject] private SharedCounterService SharedCounterService { get; set; }
+    [InjectModuleService]
     private ModuleOnlyService _moduleOnlyService;
-    private ITestService _testService;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        _moduleOnlyService = RemoteDependencyResolver.Resolve<ModuleOnlyService>();
-        _testService = RemoteDependencyResolver.Resolve<ITestService, TestService>();
-    }
+    // [InjectModuleService]
+    // private ITestService _testService;
 
     private void Inc()
     {
@@ -31,6 +27,6 @@ public partial class Counter3 : ComponentBase
 
     private void Inc3()
     {
-        _testService.DoThing();
+        // _testService.DoThing();
     }
 }

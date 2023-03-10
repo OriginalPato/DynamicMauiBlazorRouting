@@ -1,6 +1,6 @@
 ﻿namespace DynamicBlazorUi.SourceGenerator.Common;
 
-[AttributeUsage(AttributeTargets.Property)]
+[AttributeUsage(AttributeTargets.Field)]
 public class InjectModuleServiceAttribute : Attribute
 {
 }
