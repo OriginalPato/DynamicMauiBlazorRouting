@@ -7,8 +7,12 @@
 <button @onclick="Inc">Increment Shared Counter</button>
 <br />
 <br />
-@_moduleOnlyService.GetNext()
+@* @_moduleOnlyService.GetNext() *@
 <button @onclick="Inc2">Increment Module Counter</button>
+<br />
+<br />
+@* @_moduleOnlyService2.GetNext() *@
+<button @onclick="Inc22">Increment Module Counter</button>
 <br />
 <br />
 @* @_testService.GetVal() *@

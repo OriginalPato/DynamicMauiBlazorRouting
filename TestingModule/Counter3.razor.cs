@@ -8,12 +8,21 @@ namespace TestingModule;
 // ReSharper disable once ClassNeverInstantiated.Global
 public partial class Counter3 : ComponentBase
 {
-    // [Inject] private IRemoteDependencyResolver RemoteDependencyResolver { get; set; }
     [Inject] private SharedCounterService SharedCounterService { get; set; }
-    [InjectModuleService]
-    private ModuleOnlyService _moduleOnlyService;
+
     // [InjectModuleService]
-    // private ITestService _testService;
+    // private ModuleOnlyService _moduleOnlyService;
+
+    [InjectModuleService]
+    private ModuleOnlyService2 _moduleOnlyService2;
+    [InjectModuleService]
+    private ITestService _testService;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await RegisterRemoteServices();
+    }
 
     private void Inc()
     {
@@ -22,7 +31,11 @@ public partial class Counter3 : ComponentBase
 
     private void Inc2()
     {
-        _moduleOnlyService.Increment();
+        // _moduleOnlyService.Increment();
+    }
+    private void Inc22()
+    {
+        // _moduleOnlyService2.Increment();
     }
 
     private void Inc3()

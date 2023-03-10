@@ -19,14 +19,14 @@ public class Tests
 namespace TestingModule;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public partial class Counter3 : ComponentBase
+public partial class Counter3
 {
     [Inject] private IRemoteDependencyResolver RemoteDependencyResolver { get; set; }
     [Inject] private SharedCounterService SharedCounterService { get; set; }
     [InjectModuleService]
     private ModuleOnlyService _moduleOnlyService;
-    //[InjectModuleService]
-    //private ITestService _testService;
+    [InjectModuleService]
+    private ModuleOnlyService2 _moduleOnlyService2;
 
     protected override async Task OnInitializedAsync()
     {
@@ -86,6 +86,7 @@ public partial class Counter3 : ComponentBase
 
 using System.Collections.Generic;
 using DynamicBlazor.Services;
+using TestingModule.Services;
 
 namespace TestingModule
 {
@@ -93,10 +94,11 @@ namespace TestingModule
    {
         [Inject] private IRemoteDependencyResolver RemoteDependencyResolver { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected async Task RegisterRemoteServices()
         {
-            await base.OnInitializedAsync();
-            _moduleOnlyService = RemoteDependencyResolver.Resolve<ModuleOnlyService>();
+_moduleOnlyService = RemoteDependencyResolver.Resolve<ModuleOnlyService>();
+_moduleOnlyService2 = RemoteDependencyResolver.Resolve<ModuleOnlyService2>();
+
         }
    }
 }
