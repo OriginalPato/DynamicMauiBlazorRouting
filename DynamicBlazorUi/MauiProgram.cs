@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Maui.Blazor.CompositeUi;
+using Microsoft.Extensions.Logging;
 
 namespace DynamicBlazorUi;
 
@@ -6,9 +7,9 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
-		builder
+		var builder = MauiApp.CreateBuilder()
 			.UseMauiApp<App>()
+			.RegisterModuleServices()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -20,10 +21,8 @@ public static class MauiProgram
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-		builder.Services.AddSingleton<IRemoteDependencyResolver, RemoteDependencyResolver>();
-		builder.Services.AddSingleton<SharedCounterService>();
-		builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
 
+		builder.Services.AddSingleton<SharedCounterService>();
 		return builder.Build();
 	}
 }

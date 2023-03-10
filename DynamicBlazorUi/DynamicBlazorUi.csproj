@@ -54,13 +54,16 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+        <PackageReference Include="OriginalPato.Maui.Blazor.CompositeUi" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Services\" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\DynamicBlazor.Models\DynamicBlazor.Models.csproj" />
       <ProjectReference Include="..\DynamicBlazor.Services\DynamicBlazor.Services.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Services\" />
     </ItemGroup>
 </Project>

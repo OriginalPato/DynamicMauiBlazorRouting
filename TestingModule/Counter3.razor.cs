@@ -1,4 +1,5 @@
 ﻿using DynamicBlazor.Services;
+using Maui.Blazor.CompositeUi;
 using Microsoft.AspNetCore.Components;
 using TestingModule.Services;
 

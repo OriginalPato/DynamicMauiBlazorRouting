@@ -8,11 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
+        <PackageReference Include="OriginalPato.Maui.Blazor.CompositeUi" Version="1.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\DynamicBlazor.Models\DynamicBlazor.Models.csproj" />
     </ItemGroup>
 
 </Project>

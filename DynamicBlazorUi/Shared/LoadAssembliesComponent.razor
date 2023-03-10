@@ -1,1 +1,26 @@
+@using Maui.Blazor.CompositeUi
+@inject IModuleAssemblyService ModuleAssemblyService
+@inject NavigationManager NavigationManager
 <div class="spinner-grow" role="status"></div>
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        using var client = new HttpClient();
+        var features = new List<Module>()
+        {
+            new()
+            {
+                ModuleName = "TestFeature1",
+                DownloadUrl = "https://blazorhostedassembly.blob.core.windows.net/testing/TestingModule.dll",
+                ModuleRootPage = "/Counter3"
+            }
+        };
+        if (await ModuleAssemblyService.GetAssemblies(features))
+        {
+            NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+        }
+    }
+}
