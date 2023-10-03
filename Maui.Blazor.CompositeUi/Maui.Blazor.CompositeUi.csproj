@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.0.1</Version>
+        <UseMaui>true</UseMaui>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Maui Blazor Composite Ui</Title>
+        <PackageProjectUrl>https://github.com/OriginalPato/Maui.CompositeUi</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/OriginalPato/Maui.CompositeUi</RepositoryUrl>
+        <PackageTags>Maui</PackageTags>
+        <AssemblyName>Maui.Blazor.CompositeUi</AssemblyName>
+        <RootNamespace>Maui.Blazor.CompositeUi</RootNamespace>
+        <PackageId>OriginalPato.Maui.Blazor.CompositeUi</PackageId>
+        <Authors>Maui.Blazor.CompositeUi</Authors>
+        <Company>Maui.Blazor.CompositeUi</Company>
+        <Product>Maui.Blazor.CompositeUi</Product>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.Maui">
+            <HintPath>C:\Program Files\dotnet\packs\Microsoft.Maui.Core.Ref.maccatalyst\7.0.59\ref\net7.0-maccatalyst13.5\Microsoft.Maui.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Maui.Controls">
+            <HintPath>C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.ios\7.0.59\ref\net7.0-ios13.6\Microsoft.Maui.Controls.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    </ItemGroup>
+
+</Project>

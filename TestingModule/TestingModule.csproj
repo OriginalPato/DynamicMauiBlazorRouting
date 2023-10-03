@@ -15,11 +15,11 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
-        <PackageReference Include="OriginalPato.Maui.Blazor.CompositeUi" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\DynamicBlazor.Services\DynamicBlazor.Services.csproj" />
+      <ProjectReference Include="..\Maui.Blazor.CompositeUi\Maui.Blazor.CompositeUi.csproj" />
     </ItemGroup>
 
 </Project>
