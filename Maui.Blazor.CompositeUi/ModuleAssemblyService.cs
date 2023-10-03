@@ -67,8 +67,8 @@ public static class ModuleAssemblyService
                 foreach (var installerType in allInstallers)
                 {
                     var remoteDependencyResolver = ServiceHelper.GetService<IRemoteDependencyResolver>();
-                    var installer = (IModuleInstaller)Activator.CreateInstance(installerType, remoteDependencyResolver);
-                    installer.Install();
+                    var installer = Activator.CreateInstance(installerType, remoteDependencyResolver) as IModuleInstaller;
+                    installer?.Install();
                 }
                 ModuleAssemblies = ModuleAssemblies.Append(assembly).ToList();
             }
