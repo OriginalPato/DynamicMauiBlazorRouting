@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui.Hosting;
-
-namespace Maui.Blazor.CompositeUi;
+﻿namespace Maui.Blazor.CompositeUi;
 
 public static class ModuleHelpers
 {
@@ -19,14 +16,15 @@ public static class ModuleHelpers
             .Concat(ModuleAssemblyService.ModuleAssemblies)  //Only needed for runtime composition
             .Distinct()
             .SelectMany(s => s.GetExportedTypes())
-            .Where(t => t.IsClass && t.IsPublic && (!t.IsAbstract) 
+            .Where(t => t is { IsClass: true, IsPublic: true, IsAbstract: false }
                         && typeof(IModuleInstaller).IsAssignableFrom(t))
             .ToArray();
         
         foreach (var installerType in allInstallers)
         {
-            var installer = (IModuleInstaller)Activator.CreateInstance(installerType);
-            installer.Install();
+            var remoteDependencyResolver = ServiceHelper.GetService<IRemoteDependencyResolver>();
+            var installer = Activator.CreateInstance(installerType, remoteDependencyResolver) as IModuleInstaller;
+            installer?.Install();
         }
         // builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
         return builder;

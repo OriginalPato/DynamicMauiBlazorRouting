@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using DynamicBlazor.Services;
 
 namespace Maui.Blazor.CompositeUi;
 
@@ -8,7 +7,7 @@ public static class ModuleAssemblyService
     /// <summary>
     /// Public list of assemblies for the router to bind to
     /// </summary>
-    private static List<Assembly> _moduleAssemblies = new List<Assembly>();
+    private static List<Assembly> _moduleAssemblies = new();
     public static List<Assembly> ModuleAssemblies
     {
         get
@@ -23,15 +22,11 @@ public static class ModuleAssemblyService
             var assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(a => a.Name!.EndsWith("Module")).ToList();
             foreach (var assemblyName in assemblyNames)
             {
-                var assembly = Assembly.Load(assemblyName.Name);
+                var assembly = Assembly.Load(assemblyName.Name ?? throw new InvalidOperationException());
                 var customAttributes = assembly.CustomAttributes.ToList();
                 var companyAttributeData = customAttributes.SingleOrDefault(data => data.AttributeType.Name == "AssemblyCompanyAttribute");
-                if (companyAttributeData is null)
-                {
-                    continue;
-                }
 
-                var company = companyAttributeData.ConstructorArguments.First().Value;
+                var company = companyAttributeData?.ConstructorArguments.First().Value;
                 if (company != null && company.ToString() == "ByBox")
                 {
                     _moduleAssemblies.Add(Assembly.Load(assemblyName.Name));
@@ -40,7 +35,7 @@ public static class ModuleAssemblyService
 
             return _moduleAssemblies;
         }
-        set => _moduleAssemblies = value;
+        private set => _moduleAssemblies = value;
     }
 
     /// <summary>
@@ -60,7 +55,7 @@ public static class ModuleAssemblyService
             {
                 var assembly = Assembly.Load(res);
                 var allInstallers = assembly.GetExportedTypes()
-                    .Where(t => t.IsClass && t.IsPublic && (!t.IsAbstract) 
+                    .Where(t => t is { IsClass: true, IsPublic: true, IsAbstract: false }
                                 && typeof(IModuleInstaller).IsAssignableFrom(t))
                     .ToArray();
 

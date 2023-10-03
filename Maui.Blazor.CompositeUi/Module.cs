@@ -7,7 +7,7 @@ public class Module
     [JsonPropertyName("featureName")]
     public required string ModuleName { get; set; }
     [JsonPropertyName("downloadUrl")]
-    public required string DownloadUrl { get; set; }
+    public required string DownloadUrl { get; init; }
     [JsonPropertyName("featureMainPage")]
     public required string ModuleRootPage { get; set; }
 }
