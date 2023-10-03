@@ -3,13 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TestingModule.Services;
 
-public interface IGooseService
+public interface IModuleRegisteredService
 {
     void DoThing();
     int GetVal();
 }
 
-public class GooseService : IGooseService
+public class ModuleRegisteredService : IModuleRegisteredService
 {
     private int _counter = 600;
     public void DoThing()

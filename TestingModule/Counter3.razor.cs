@@ -12,12 +12,12 @@ public partial class Counter3 : ComponentBase
     [Inject] private SharedCounterService SharedCounterService { get; set; }
     private ModuleOnlyService _moduleOnlyService;
     private ITestService _testService;
-    private IGooseService GooseService;
+    private IModuleRegisteredService _moduleRegisteredService;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        GooseService = RemoteDependencyResolver.Resolve<IGooseService, GooseService>();
+        _moduleRegisteredService = RemoteDependencyResolver.Resolve<IModuleRegisteredService, ModuleRegisteredService>();
         _moduleOnlyService = RemoteDependencyResolver.Resolve<ModuleOnlyService>();
         _testService = RemoteDependencyResolver.Resolve<ITestService, TestService>();
     }
@@ -39,6 +39,6 @@ public partial class Counter3 : ComponentBase
     
     private void Dec1()
     {
-        GooseService.DoThing();
+        _moduleRegisteredService.DoThing();
     }
 }

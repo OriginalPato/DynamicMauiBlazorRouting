@@ -14,6 +14,6 @@ public class ModuleInstaller : IModuleInstaller
     }
     public void Install()
     {
-        _remoteDependencyResolver.Resolve<IGooseService, GooseService>();
+        _remoteDependencyResolver.Resolve<IModuleRegisteredService, ModuleRegisteredService>();
     }
 }
