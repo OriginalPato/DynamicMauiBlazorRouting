@@ -2,5 +2,5 @@
 
 public interface IModuleInstaller
 {
-    void Install(IServiceCollection services);
+    void Install();
 }

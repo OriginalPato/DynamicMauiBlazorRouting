@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using DynamicBlazor.Services;
 
 namespace Maui.Blazor.CompositeUi;
 
@@ -58,6 +59,17 @@ public static class ModuleAssemblyService
             try
             {
                 var assembly = Assembly.Load(res);
+                var allInstallers = assembly.GetExportedTypes()
+                    .Where(t => t.IsClass && t.IsPublic && (!t.IsAbstract) 
+                                && typeof(IModuleInstaller).IsAssignableFrom(t))
+                    .ToArray();
+
+                foreach (var installerType in allInstallers)
+                {
+                    var remoteDependencyResolver = ServiceHelper.GetService<IRemoteDependencyResolver>();
+                    var installer = (IModuleInstaller)Activator.CreateInstance(installerType, remoteDependencyResolver);
+                    installer.Install();
+                }
                 ModuleAssemblies = ModuleAssemblies.Append(assembly).ToList();
             }
             catch (Exception)

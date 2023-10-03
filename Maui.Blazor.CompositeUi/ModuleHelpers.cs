@@ -13,6 +13,7 @@ public static class ModuleHelpers
     public static MauiAppBuilder RegisterModuleServices(
         this MauiAppBuilder builder)
     {
+        builder.Services.AddSingleton<IRemoteDependencyResolver, RemoteDependencyResolver>();
         var allInstallers = AppDomain.CurrentDomain.GetAssemblies()                                    
             .Where(x => x.FullName.Contains("Module"))
             .Concat(ModuleAssemblyService.ModuleAssemblies)  //Only needed for runtime composition
@@ -21,13 +22,12 @@ public static class ModuleHelpers
             .Where(t => t.IsClass && t.IsPublic && (!t.IsAbstract) 
                         && typeof(IModuleInstaller).IsAssignableFrom(t))
             .ToArray();
-
+        
         foreach (var installerType in allInstallers)
         {
             var installer = (IModuleInstaller)Activator.CreateInstance(installerType);
-            installer.Install(builder.Services);
+            installer.Install();
         }
-        builder.Services.AddSingleton<IRemoteDependencyResolver, RemoteDependencyResolver>();
         // builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
         return builder;
     }
