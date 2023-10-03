@@ -1,7 +1,4 @@
-﻿using Maui.Blazor.CompositeUi;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace TestingModule.Services;
+﻿namespace TestingModule.Services;
 
 public interface IModuleRegisteredService
 {

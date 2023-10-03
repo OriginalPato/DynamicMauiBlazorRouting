@@ -1,5 +1,4 @@
 ﻿using Maui.Blazor.CompositeUi;
-using Microsoft.Extensions.DependencyInjection;
 using TestingModule.Services;
 
 namespace TestingModule;

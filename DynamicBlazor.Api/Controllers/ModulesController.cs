@@ -17,7 +17,7 @@ public class ModulesController : ControllerBase
     [HttpGet(Name = "GetFeatures")]
     public IEnumerable<Module> Get()
     {
-        var features = new List<Module>()
+        var features = new List<Module>
         {
             new()
             {
