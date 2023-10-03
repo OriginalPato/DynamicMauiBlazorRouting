@@ -13,8 +13,22 @@ public static class ModuleHelpers
     public static MauiAppBuilder RegisterModuleServices(
         this MauiAppBuilder builder)
     {
+        var allInstallers = AppDomain.CurrentDomain.GetAssemblies()                                    
+            .Where(x => x.FullName.Contains("Module"))
+            .Concat(ModuleAssemblyService.ModuleAssemblies)  //Only needed for runtime composition
+            .Distinct()
+            .SelectMany(s => s.GetExportedTypes())
+            .Where(t => t.IsClass && t.IsPublic && (!t.IsAbstract) 
+                        && typeof(IModuleInstaller).IsAssignableFrom(t))
+            .ToArray();
+
+        foreach (var installerType in allInstallers)
+        {
+            var installer = (IModuleInstaller)Activator.CreateInstance(installerType);
+            installer.Install(builder.Services);
+        }
         builder.Services.AddSingleton<IRemoteDependencyResolver, RemoteDependencyResolver>();
-        builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
+        // builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
         return builder;
     }
 }

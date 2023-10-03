@@ -1,5 +1,4 @@
 @using Maui.Blazor.CompositeUi
-@inject IModuleAssemblyService ModuleAssemblyService
 @inject NavigationManager NavigationManager
 <div class="spinner-grow" role="status"></div>
 
@@ -18,7 +17,8 @@
                 ModuleRootPage = "/Counter3"
             }
         };
-        if (await ModuleAssemblyService.GetAssemblies(features))
+        
+        if (await ModuleAssemblyService.GetAssemblyFromRemoteSource(features))
         {
             NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
         }

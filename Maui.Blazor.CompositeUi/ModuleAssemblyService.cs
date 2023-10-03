@@ -2,22 +2,44 @@
 
 namespace Maui.Blazor.CompositeUi;
 
-public interface IModuleAssemblyService
-{
-    IEnumerable<Assembly> Assemblies { get; }
-    Task<bool> GetAssemblies(List<Module> modules);
-}
-
-public class ModuleAssemblyService : IModuleAssemblyService
+public static class ModuleAssemblyService
 {
     /// <summary>
     /// Public list of assemblies for the router to bind to
     /// </summary>
-    public IEnumerable<Assembly> Assemblies { get; private set; }
-
-    public ModuleAssemblyService()
+    private static List<Assembly> _moduleAssemblies = new List<Assembly>();
+    public static List<Assembly> ModuleAssemblies
     {
-        Assemblies = new List<Assembly>();
+        get
+        {
+            if (_moduleAssemblies.Any())
+            {
+                return _moduleAssemblies;
+            }
+
+            // _moduleAssemblies.Add(Assembly.Load("DynamicBlazor.Services"));
+
+            var assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(a => a.Name!.EndsWith("Module")).ToList();
+            foreach (var assemblyName in assemblyNames)
+            {
+                var assembly = Assembly.Load(assemblyName.Name);
+                var customAttributes = assembly.CustomAttributes.ToList();
+                var companyAttributeData = customAttributes.SingleOrDefault(data => data.AttributeType.Name == "AssemblyCompanyAttribute");
+                if (companyAttributeData is null)
+                {
+                    continue;
+                }
+
+                var company = companyAttributeData.ConstructorArguments.First().Value;
+                if (company != null && company.ToString() == "ByBox")
+                {
+                    _moduleAssemblies.Add(Assembly.Load(assemblyName.Name));
+                }
+            }
+
+            return _moduleAssemblies;
+        }
+        set => _moduleAssemblies = value;
     }
 
     /// <summary>
@@ -25,7 +47,7 @@ public class ModuleAssemblyService : IModuleAssemblyService
     /// </summary>
     /// <param name="modules"></param>
     /// <returns></returns>
-    public async Task<bool> GetAssemblies(List<Module> modules)
+    public static async Task<bool> GetAssemblyFromRemoteSource(List<Module> modules)
     {
         using var client = new HttpClient();
         var errors = 0;
@@ -36,7 +58,7 @@ public class ModuleAssemblyService : IModuleAssemblyService
             try
             {
                 var assembly = Assembly.Load(res);
-                Assemblies = Assemblies.Append(assembly);
+                ModuleAssemblies = ModuleAssemblies.Append(assembly).ToList();
             }
             catch (Exception)
             {
@@ -44,7 +66,7 @@ public class ModuleAssemblyService : IModuleAssemblyService
                 errors++;
             }
         }
-
+    
         return errors == 0;
     }
 }

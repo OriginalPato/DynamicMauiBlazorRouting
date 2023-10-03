@@ -1,6 +1,5 @@
 ﻿@using Maui.Blazor.CompositeUi
-@inject IModuleAssemblyService ModuleAssemblyService
-<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="@ModuleAssemblyService.Assemblies">
+<Router AppAssembly="@typeof(Main).Assembly" AdditionalAssemblies="@ModuleAssemblyService.ModuleAssemblies">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
