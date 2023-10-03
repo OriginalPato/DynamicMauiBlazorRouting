@@ -63,7 +63,4 @@
       <ProjectReference Include="..\DynamicBlazor.Services\DynamicBlazor.Services.csproj" />
       <ProjectReference Include="..\Maui.Blazor.CompositeUi\Maui.Blazor.CompositeUi.csproj" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
 </Project>
