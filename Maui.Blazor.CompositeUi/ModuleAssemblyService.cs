@@ -17,8 +17,6 @@ public static class ModuleAssemblyService
                 return _moduleAssemblies;
             }
 
-            // _moduleAssemblies.Add(Assembly.Load("DynamicBlazor.Services"));
-
             var assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(a => a.Name!.EndsWith("Module")).ToList();
             foreach (var assemblyName in assemblyNames)
             {
@@ -27,10 +25,9 @@ public static class ModuleAssemblyService
                 var companyAttributeData = customAttributes.SingleOrDefault(data => data.AttributeType.Name == "AssemblyCompanyAttribute");
 
                 var company = companyAttributeData?.ConstructorArguments.First().Value;
-                if (company != null && company.ToString() == "ByBox")
-                {
-                    _moduleAssemblies.Add(Assembly.Load(assemblyName.Name));
-                }
+                
+                //TODO add company flag to make sure you are only loading DLL's from the company you want. 
+                _moduleAssemblies.Add(Assembly.Load(assemblyName.Name));
             }
 
             return _moduleAssemblies;

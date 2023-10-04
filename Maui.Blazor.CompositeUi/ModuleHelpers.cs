@@ -26,7 +26,7 @@ public static class ModuleHelpers
             var installer = Activator.CreateInstance(installerType, remoteDependencyResolver) as IModuleInstaller;
             installer?.Install();
         }
-        // builder.Services.AddSingleton<IModuleAssemblyService, ModuleAssemblyService>();
+        
         return builder;
     }
 }
