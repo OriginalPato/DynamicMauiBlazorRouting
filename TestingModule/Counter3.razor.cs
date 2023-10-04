@@ -17,7 +17,7 @@ public partial class Counter3 : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        _moduleRegisteredService = RemoteDependencyResolver.Resolve<IModuleRegisteredService, ModuleRegisteredService>();
+        _moduleRegisteredService = ServiceHelper.GetService<IModuleRegisteredService>();
         _moduleOnlyService = RemoteDependencyResolver.Resolve<ModuleOnlyService>();
         _testService = RemoteDependencyResolver.Resolve<ITestService, TestService>();
     }
